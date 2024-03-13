@@ -3,7 +3,7 @@ CREATE TABLE tbCampus (
     ,nome VARCHAR (100) NOT NULL 
     ,rua VARCHAR (100) NOT NULL 
     ,número VARCHAR (100) NOT NULL 
-    ,cep VARCHAR (9) NOT NULL 
+    ,cep CHAR (14) NOT NULL 
     ,logradouro VARCHAR(100 ) NOT NULL 
     ,complemento VARCHAR(100) NOT NULL 
     ,bairro VARCHAR (100) NOT NULL 
@@ -20,7 +20,7 @@ CREATE TABLE tbCampus (
   
   CREATE TABLE tbDisciplina (
     IdDisciplina INT PRIMARY KEY IDENTITY (1,1) 
-    ,Data_da_Matricula SMALLDATETIME NOT NULL 
+    ,Data_da_Matricula SMALLDATETIME
     ,idCurso INT FOREIGN KEY REFERENCES tbCurso (idCurso)
   )
  
@@ -50,15 +50,15 @@ CREATE TABLE tbCampus (
   
   CREATE TABLE tbTurma (
     idTurma INT PRIMARY KEY IDENTITY (1,1)
-    ano_de_iniciacao SMALLDATETIME NOT NULL
-    ano_de_formacao SMALLDATETIME NOT NULL
+    ano_de_iniciacao SMALLDATETIME 
+    ano_de_formacao SMALLDATETIME
     numero_da_sala INT NOT NULL
     ,idCurso INT FOREIGN KEY REFERENCES tbCurso (idCurso)
   )
   
   CREATE TABLE tbMatricula (
      idMatricula INT PRIMARY KEY IDENTITY (1,1)
-    ,data_da_Matricula SMALLDATETIME NOT NULL
+    ,data_da_Matricula SMALLDATETIME 
     ,idAluno INT FOREIGN KEY REFERENCES tbAluno (IdAluno)
   )
   
