@@ -71,11 +71,9 @@
     )
     BEGIN
         IF EXISTS (SELECT 1 FROM tb_Aluno WHERE rgAluno = p_rg) THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Aluno com o CPF fornecido já existe.';
         ELSE
             INSERT INTO tb_Aluno (nomeAluno, rgAluno, dataNascAluno, naturalidadeAluno)
             VALUES (p_nome, p_rg, p_data_nascimento, p_naturalidade);
-            SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Aluno inserido com sucesso.';
         END IF;
     END;
   EXEC Inserir_Aluno 'Maria Santos', '12.345.678-9';
@@ -100,16 +98,12 @@
         WHERE codCurso = curso_id
         LIMIT 1;
         IF aluno_id IS NULL THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Aluno não encontrado.';
         ELSEIF turma_id IS NULL THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Turma não encontrada para o curso especificado.';
         ELSE
             IF EXISTS (SELECT 1 FROM tb_Matricula WHERE codAluno = aluno_id AND codTurma = turma_id) THEN
-                SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'O aluno já está matriculado neste curso.';
             ELSE
                 INSERT INTO tb_Matricula (codAluno, codTurma)
                 VALUES (aluno_id, turma_id);
-                SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Matrícula realizada com sucesso.';
             END IF;
         END IF;
     END;
