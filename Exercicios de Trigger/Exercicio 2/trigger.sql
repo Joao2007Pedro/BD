@@ -17,7 +17,7 @@
 
 -- 2) 
 	-- a) Ao ser feito um depósito atualize o saldo da conta corrente somando a quantia depositada
-      CREATE TRIGGER tr_AtualizaSaldoDeposito ON tbDeposito AFTER INSERT
+      CREATE TRIGGER tgAtualizaSaldoDeposito ON tbDeposito AFTER INSERT
       AS
       BEGIN
       UPDATE tbContaCorrente
@@ -26,7 +26,7 @@
       END;
 
   -- b) Ao ser feito um saque atualize o saldo da conta corrente descontando o valor caso tenha saldo suficiente
-      CREATE TRIGGER tr_AtualizaSaldoSaque ON tbSaque AFTER INSERT
+      CREATE TRIGGER tgAtualizaSaldoSaque ON tbSaque AFTER INSERT
       AS
       BEGIN
       DECLARE @saldoAtual DECIMAL(18, 2);
